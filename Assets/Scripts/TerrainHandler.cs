@@ -20,7 +20,13 @@ public class TerrainHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cells = new HexCell[5*5];
+        int length = 0;
+        for(int i = 0; i < size; i++)
+        {
+            length += getOffset(i);
+        }
+        Debug.Log(length);
+        cells = new HexCell[length];
 
         AddGap();
         CalcStartPos();
@@ -97,6 +103,7 @@ public class TerrainHandler : MonoBehaviour
                 hex.setType(materials[terrainType]);
 
                 cells[i] = hex;
+                i++;
             }
 
         }
