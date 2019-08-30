@@ -25,7 +25,6 @@ public class TerrainHandler : MonoBehaviour
         {
             length += getOffset(i);
         }
-        Debug.Log(length);
         cells = new HexCell[length];
 
         AddGap();
@@ -97,7 +96,7 @@ public class TerrainHandler : MonoBehaviour
                 hex.transform.position = worldPos;
                 hex.transform.rotation = new Quaternion(0, Mathf.PI / 4.0f, 0, 0);
                 hex.transform.parent = this.transform;
-                hex.name = "Hexagon " + i;
+                hex.name = "Hexagon " + x +","+y+": "+i;
                 hex.position = gPos;
 
                 hex.setType(materials[terrainType]);
@@ -111,6 +110,53 @@ public class TerrainHandler : MonoBehaviour
 
     int getOffset(int y){
         return size - Mathf.Abs(y - size / 2);
+    }
+
+    int[] getNeighbours(int i)
+    {
+        int x = (int) cells[i].position.x;
+        int y = (int) cells[i].position.y;
+
+        int rad = (int) Mathf.Ceil(size / 2);
+
+        int upperOffset = 0;
+        int lowerOffset = 0;
+
+        if(y < rad){
+            upperOffset = 0;
+            lowerOffset = -1;
+        }else if(y == rad){
+            upperOffset = -1;
+            lowerOffset = -1;
+        }else{
+            upperOffset = -1;
+            lowerOffset = 0;
+        }
+
+        int length = 6;
+        int[] neighbours = new int[length];
+
+        neighbours[0] = getCellIndex(x + lowerOffset, y - 1);
+        neighbours[1] = getCellIndex(x + lowerOffset + 1, y - 1);
+
+        neighbours[2] = getCellIndex(x - 1, y);
+        neighbours[3] = getCellIndex(x + 1, y);
+
+        neighbours[4] = getCellIndex(x + upperOffset, y + 1);
+        neighbours[5] = getCellIndex(x + upperOffset + 1, y + 1);
+
+        return neighbours;
+    }
+
+    int getCellIndex(int x, int y){
+        for(int i = 0; i < cells.Length; i++)
+        {
+            if((int) cells[i].position.x == x && (int) cells[i].position.y == y)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Update is called once per frame
