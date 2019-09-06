@@ -9,8 +9,8 @@ public class TerrainHandler : MonoBehaviour
 
     public int size = 5;
 
-    float hexWidth = 1.73f;
-    float hexHeight = 2f;
+    public float hexWidth = 1.73f;
+    public float hexHeight = 2f;
     public float gap = 0.1f;
 
     Vector2 startPos;

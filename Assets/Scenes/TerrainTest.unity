@@ -146,17 +146,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8913366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aafa203d31a73e4ea361bdbd2b95e0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c3b930310becb54faa4ccc527a0f8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 405148381280074504, guid: 78a68e9df0e5a1f43a5fe20cc7c46d3e,
     type: 3}
-  size: 5
+  size: 10
   gap: 0
   materials:
-  - {fileID: 2100000, guid: 8beac02be7f934148af07f3469f07272, type: 2}
   - {fileID: 2100000, guid: 3c8fbc6a657d26e4ba2638bd17332c57, type: 2}
   - {fileID: 2100000, guid: b5ea3eb92aaa7134d99b739406f6d0a8, type: 2}
+  - {fileID: 2100000, guid: 8beac02be7f934148af07f3469f07272, type: 2}
 --- !u!4 &8913368
 Transform:
   m_ObjectHideFlags: 0
