@@ -15,8 +15,6 @@ public class TerrainHandler : MonoBehaviour
 
     Vector2 startPos;
 
-    public Material[] materials;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +63,18 @@ public class TerrainHandler : MonoBehaviour
         return new Vector3(x, 0, z); // Change 0 to perlin noise value;
     }
 
+    int getTerrainType(float height){
+
+        float workingHeight = height;
+        for(int i = 0; i < TerrainData.terrainTypes.Length; i++){
+            height -= TerrainData.terrainTypes[i].heightThreshold;
+            if(height <= 0){
+                return i;
+            }
+        }
+        return TerrainData.terrainTypes.Length - 1;
+    }
+
     void CreateGrid()
     {
 
@@ -81,25 +91,17 @@ public class TerrainHandler : MonoBehaviour
                 float pX = (worldPos.x / hexWidth) * scale + seed;
                 float pZ = (worldPos.z / hexHeight) * scale + seed;
                 float height = Mathf.PerlinNoise(pX, pZ);
-                int terrainType = 0;
-                if(height < 0.3){
-                    terrainType = 0;
-                }else if(height < 0.6)
-                {
-                    terrainType = 1;
-                }
-                else
-                {
-                    terrainType = 2;
-                }
+                int terrainType = getTerrainType(height);
+
+
 
                 hex.transform.position = worldPos;
                 hex.transform.rotation = new Quaternion(0, Mathf.PI / 4.0f, 0, 0);
                 hex.transform.parent = this.transform;
-                hex.name = "Hexagon " + x +","+y+": "+i;
+                hex.name = "(" + x +","+y+") "+ TerrainData.terrainTypes[terrainType].name;
                 hex.position = gPos;
 
-                hex.setType(materials[terrainType]);
+                hex.setType(TerrainData.terrainTypes[terrainType]);
 
                 cells[i] = hex;
                 i++;
@@ -108,12 +110,32 @@ public class TerrainHandler : MonoBehaviour
         }
     }
 
+    TerrainData.TerrainType getTileType(int i){
+        if (i < 0 || i >= cells.Length) {
+            TerrainData.TerrainType nType = new TerrainData.TerrainType();
+            nType.name = "null";
+            return nType;
+        }
+        return cells[i].getType();
+    }
+
     int getOffset(int y){
         return size - Mathf.Abs(y - size / 2);
     }
 
+    TerrainData.TerrainType[] getNeighbourTypes(int index){
+        int[] neighbours = getNeighbours(index);
+        TerrainData.TerrainType[] result = new TerrainData.TerrainType[neighbours.Length];
+        for (int i = 0; i < neighbours.Length; i++){
+            result[i] = getTileType(neighbours[i]);
+        }
+        return result;
+    }
+
     int[] getNeighbours(int i)
     {
+        if(i < 0 || i >= cells.Length) {return null;}
+
         int x = (int) cells[i].position.x;
         int y = (int) cells[i].position.y;
 

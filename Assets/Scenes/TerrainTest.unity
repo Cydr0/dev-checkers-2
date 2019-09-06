@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8913368}
   - component: {fileID: 8913367}
+  - component: {fileID: 8913369}
   m_Layer: 0
   m_Name: TerrainHandler
   m_TagString: Untagged
@@ -151,12 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 405148381280074504, guid: 78a68e9df0e5a1f43a5fe20cc7c46d3e,
     type: 3}
-  size: 5
+  size: 11
   gap: 0
-  materials:
-  - {fileID: 2100000, guid: 8beac02be7f934148af07f3469f07272, type: 2}
-  - {fileID: 2100000, guid: 3c8fbc6a657d26e4ba2638bd17332c57, type: 2}
-  - {fileID: 2100000, guid: b5ea3eb92aaa7134d99b739406f6d0a8, type: 2}
 --- !u!4 &8913368
 Transform:
   m_ObjectHideFlags: 0
@@ -171,6 +168,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8913369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be3891cfc77621409b412666f2ebd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t1: {fileID: 2100000, guid: 3c8fbc6a657d26e4ba2638bd17332c57, type: 2}
+  t2: {fileID: 2100000, guid: fa2865cd2d977774d9135bd29f85b755, type: 2}
+  t3: {fileID: 2100000, guid: 09402afd7c14e554f86d8eb9a41b046a, type: 2}
+  t4: {fileID: 2100000, guid: 7a1b25f552550e04791da092b4ec8e8c, type: 2}
+  t5: {fileID: 2100000, guid: b5ea3eb92aaa7134d99b739406f6d0a8, type: 2}
 --- !u!1 &111003378
 GameObject:
   m_ObjectHideFlags: 0
