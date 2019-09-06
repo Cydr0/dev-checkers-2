@@ -32,7 +32,7 @@ public class TerrainData : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         terrainTypes = new TerrainType[5];
 

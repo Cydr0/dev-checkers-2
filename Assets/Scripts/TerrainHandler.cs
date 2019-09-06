@@ -18,6 +18,7 @@ public class TerrainHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         int length = 0;
         for(int i = 0; i < size; i++)
         {
@@ -47,9 +48,6 @@ public class TerrainHandler : MonoBehaviour
     {
         float offset = getOffset((int)gridPos.y);
         offset -= offset/2.0f;
-        
-
-
 
 
         float x = startPos.x+((gridPos.x-offset) * hexWidth);
@@ -60,7 +58,7 @@ public class TerrainHandler : MonoBehaviour
         float y = Mathf.PerlinNoise(x*scale, z*scale);
 
 
-        return new Vector3(x, 0, z); // Change 0 to perlin noise value;
+        return new Vector3(x, 0, z);
     }
 
     int getTerrainType(float height){
