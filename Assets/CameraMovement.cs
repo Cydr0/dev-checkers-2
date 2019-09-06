@@ -29,7 +29,7 @@ public class CameraMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if(Input.GetKey(KeyCode.RightArrow)){
+        if(Input.GetKey(KeyCode.D)){
             transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
             rightTime++;
         }else if(rightTime > 0 && rightSmoothTime > 0){
@@ -40,7 +40,7 @@ public class CameraMovement : MonoBehaviour
             rightTime = 0;
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow)){
+        if(Input.GetKey(KeyCode.A)){
             transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
             leftTime++;
         }else if(leftTime > 0 && leftSmoothTime > 0){
@@ -51,7 +51,7 @@ public class CameraMovement : MonoBehaviour
             leftTime = 0;
         }
 
-        if(Input.GetKey(KeyCode.DownArrow)){
+        if(Input.GetKey(KeyCode.S)){
             transform.Translate(new Vector3(0,-speed * Time.deltaTime,0));
             downTime++;
         }else if(downTime > 0 && downSmoothTime > 0){
@@ -62,7 +62,7 @@ public class CameraMovement : MonoBehaviour
             downTime = 0;
         }
 
-        if(Input.GetKey(KeyCode.UpArrow)){
+        if(Input.GetKey(KeyCode.W)){
             transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
             upTime++;
         }else if(upTime > 0 && upSmoothTime > 0){
