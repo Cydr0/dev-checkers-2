@@ -129,8 +129,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8913368}
-  - component: {fileID: 8913367}
   - component: {fileID: 8913369}
+  - component: {fileID: 8913367}
   m_Layer: 0
   m_Name: TerrainHandler
   m_TagString: Untagged
