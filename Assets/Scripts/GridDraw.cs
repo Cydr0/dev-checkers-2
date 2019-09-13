@@ -12,9 +12,9 @@ public class GridDraw : MonoBehaviour{
     float hexHeight;
 
     private void Start() {
-        terrainHandler = GameObject.Find("TerrainHandler");
+        /*terrainHandler = GameObject.Find("TerrainHandler");
         hexWidth = terrainHandler.GetComponent<TerrainHandler>().hexWidth;
-        hexHeight = terrainHandler.GetComponent<TerrainHandler>().hexHeight;
+        hexHeight = terrainHandler.GetComponent<TerrainHandler>().hexHeight;*/
     }
 
     public void drawGrid() {
