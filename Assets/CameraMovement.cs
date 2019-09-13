@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){
             transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
             rightTime++;
-        }else if(rightTime > 0 && rightSmoothTime > 0){
+        }else if(rightTime-1 > 0 && rightSmoothTime-1 > 0){
             transform.Translate(new Vector3((speed/(smoothTime - rightSmoothTime)) * Time.deltaTime,0,0));
             rightSmoothTime--;
         }else if(rightSmoothTime == 0){
@@ -43,7 +43,7 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.A)){
             transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
             leftTime++;
-        }else if(leftTime > 0 && leftSmoothTime > 0){
+        }else if(leftTime-1 > 0 && leftSmoothTime-1 > 0){
             transform.Translate(new Vector3((-speed/(smoothTime - leftSmoothTime)) * Time.deltaTime,0,0));
             leftSmoothTime--;
         }else if(leftSmoothTime == 0){
@@ -54,7 +54,7 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.S)){
             transform.Translate(new Vector3(0,-speed * Time.deltaTime,0));
             downTime++;
-        }else if(downTime > 0 && downSmoothTime > 0){
+        }else if(downTime-1 > 0 && downSmoothTime-1 > 0){
             transform.Translate(new Vector3(0,(-speed/(smoothTime - downSmoothTime)) * Time.deltaTime,0));
             downSmoothTime--;
         }else if(downSmoothTime == 0){
@@ -65,7 +65,7 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.W)){
             transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
             upTime++;
-        }else if(upTime > 0 && upSmoothTime > 0){
+        }else if(upTime-1 > 0 && upSmoothTime-1 > 0){
             transform.Translate(new Vector3(0,(speed/(smoothTime - upSmoothTime)) * Time.deltaTime,0));
             upSmoothTime--;
         }else if(upSmoothTime == 0){
