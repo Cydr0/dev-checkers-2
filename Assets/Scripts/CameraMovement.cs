@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public float speed = 10.0f;
-    public static int smoothTime = 30;
+    public static int smoothTime = 20;
 
     public string decayType = "exp";    // Can be exp, or log
 
