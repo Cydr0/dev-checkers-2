@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 352631834}
   - component: {fileID: 352631833}
   - component: {fileID: 352631835}
+  - component: {fileID: 352631836}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -186,6 +187,18 @@ MonoBehaviour:
   t3: {fileID: 2100000, guid: 09402afd7c14e554f86d8eb9a41b046a, type: 2}
   t4: {fileID: 2100000, guid: 7a1b25f552550e04791da092b4ec8e8c, type: 2}
   t5: {fileID: 2100000, guid: a2fc2de26074ac643a1022882fa9bb39, type: 2}
+--- !u!114 &352631836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352631832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c496b9a3201114faa99264bcbe06fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &746668478
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  currentTile: {fileID: 0}
   offset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6300185870343142612
 GameObject:

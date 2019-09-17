@@ -10,7 +10,7 @@ public class CharacterControllerGeneric : MonoBehaviour {
     private GameObject gameController;
     private GameObject selectedTile;
     private GameObject lastSelected;
-    public GameObject currentTile;
+    private GameObject currentTile;
 
     TerrainHandler terrainHandler;
 
@@ -26,7 +26,7 @@ public class CharacterControllerGeneric : MonoBehaviour {
         gameController = GameObject.Find("GameController");
         terrainHandler = gameController.GetComponent<TerrainHandler>();
         currentMaterial = GetComponent<Renderer>().material;
-        currentTile = gameController.GetComponent<TerrainHandler>().cells[0].transform.gameObject;
+        currentTile = terrainHandler.cells[0].transform.gameObject;
         this.transform.position = currentTile.transform.position + offset;
     }
 
@@ -75,11 +75,13 @@ public class CharacterControllerGeneric : MonoBehaviour {
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
             selectedTile = hitInfo.transform.gameObject;
             Debug.Log("Raycast hit " + selectedTile);
+            // check if tile was hit
             if (hit && hitInfo.transform.gameObject.tag == "Tile") {
                 int cellIndex = currentTile.GetComponent<HexCell>().index;
                 int selectedTileIndex = selectedTile.GetComponent<HexCell>().index;
                 int[] neighbours = terrainHandler.getNeighbours(cellIndex);
                 bool found = false;
+                // check if tile is a valid neighbouring tile
                 for (int i = 0; i != neighbours.Length && found != true; i++) {
                     if (neighbours[i] >= 0) {
                         int neighbourIndex = neighbours[i];
@@ -89,9 +91,13 @@ public class CharacterControllerGeneric : MonoBehaviour {
                         }
                     }
                 }
-                if (this.gameObject != selectedTile && found == true) {
+                // move onto tile if tile is accessable and the player has enough AP
+                int currentTileMoveCost = terrainHandler.getTileType(selectedTileIndex).movementCost;
+                if (this.gameObject != selectedTile && found == true &&
+                    currentTileMoveCost != -1 && PlayerVariables.currentAP >= currentTileMoveCost) {
                     this.transform.position = selectedTile.transform.position + offset;
                     currentTile = selectedTile;
+                    PlayerVariables.currentAP -= currentTileMoveCost;
                 }
             }
         }

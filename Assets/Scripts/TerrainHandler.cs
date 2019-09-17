@@ -110,7 +110,7 @@ public class TerrainHandler : MonoBehaviour
         }
     }
 
-    TerrainData.TerrainType getTileType(int i){
+    public TerrainData.TerrainType getTileType(int i){
         if (i < 0 || i >= cells.Length) {
             TerrainData.TerrainType nType = new TerrainData.TerrainType();
             nType.name = "null";
