@@ -5,7 +5,7 @@ public class TerrainHandler : MonoBehaviour
 
     public HexCell cellPrefab;
 
-    HexCell[] cells;
+    public HexCell[] cells;
 
     public int size = 5;
 
@@ -44,7 +44,7 @@ public class TerrainHandler : MonoBehaviour
         hexHeight += gap;
     }
 
-    Vector3 CalcWorldPos(Vector2 gridPos)
+    public Vector3 CalcWorldPos(Vector2 gridPos)
     {
         float offset = getOffset((int)gridPos.y);
         offset -= offset/2.0f;
@@ -99,6 +99,8 @@ public class TerrainHandler : MonoBehaviour
                 hex.name = "(" + x +","+y+") "+ TerrainData.terrainTypes[terrainType].name;
                 hex.position = gPos;
 
+                hex.index = i;
+
                 hex.setType(TerrainData.terrainTypes[terrainType]);
 
                 cells[i] = hex;
@@ -130,7 +132,7 @@ public class TerrainHandler : MonoBehaviour
         return result;
     }
 
-    int[] getNeighbours(int i)
+    public int[] getNeighbours(int i)
     {
         if(i < 0 || i >= cells.Length) {return null;}
 
@@ -168,7 +170,7 @@ public class TerrainHandler : MonoBehaviour
         return neighbours;
     }
 
-    int getCellIndex(int x, int y){
+    public int getCellIndex(int x, int y){
         for(int i = 0; i < cells.Length; i++)
         {
             if((int) cells[i].position.x == x && (int) cells[i].position.y == y)
@@ -180,8 +182,7 @@ public class TerrainHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update() {
+        
+    }   
 }

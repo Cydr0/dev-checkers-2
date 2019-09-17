@@ -7,6 +7,7 @@ public class PlayerVariables : MonoBehaviour
 
     public static int maxAP = 20;
     public static int currentAP;
+    public static CharacterControllerGeneric unitSelected = null;
     // Start is called before the first frame update
     void Start()
     {
