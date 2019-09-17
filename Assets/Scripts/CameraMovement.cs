@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public static int smoothTime = 10;
+    public float speed = 10.0f;
+    public static int smoothTime = 75;
 
     public int startX;
     public int startY;
     public int startZ;
 
-    private int rightTime = 0;
-    private int leftTime = 0;
-    private int downTime = 0;
-    private int upTime = 0;
+    private bool rightBool = false;
+    private bool leftBool = false;
+    private bool downBool = false;
+    private bool upBool = false;
 
     private int rightSmoothTime = smoothTime;
     private int leftSmoothTime = smoothTime;
@@ -24,53 +24,54 @@ public class CameraMovement : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        transform.position = new Vector3(startX,startY,startZ);        //initialize camera start position
+        //transform.positon(new Vector3(startX, startY, startZ));
+        //GetComponent<Camera>().transform.position = new Vector3(startX,startY,startZ);        //initialize camera start position
     }
 
     // Update is called once per frame
     void Update(){
-        if(Input.GetKey(KeyCode.D)){
-            transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
-            rightTime++;
-        }else if(rightTime-1 > 0 && rightSmoothTime-1 > 0){
-            transform.Translate(new Vector3((speed/(smoothTime - rightSmoothTime)) * Time.deltaTime,0,0));
+        if(Input.GetKey(KeyCode.D)){    // Right
+            GetComponent<Camera>().transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
+            rightBool = true;
+        }else if(rightBool && rightSmoothTime-1 > 0){
+            GetComponent<Camera>().transform.Translate(new Vector3((-speed/(smoothTime - (rightSmoothTime-1))) * Time.deltaTime,0,0));
             rightSmoothTime--;
-        }else if(rightSmoothTime == 0){
+        }else{
             rightSmoothTime = smoothTime;
-            rightTime = 0;
+            rightBool = false;
         }
 
-        if(Input.GetKey(KeyCode.A)){
-            transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
-            leftTime++;
-        }else if(leftTime-1 > 0 && leftSmoothTime-1 > 0){
-            transform.Translate(new Vector3((-speed/(smoothTime - leftSmoothTime)) * Time.deltaTime,0,0));
+        if(Input.GetKey(KeyCode.A)){    // Left
+            GetComponent<Camera>().transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
+            leftBool = true;
+        }else if(leftBool && leftSmoothTime-1 > 0){
+            GetComponent<Camera>().transform.Translate(new Vector3((speed/(smoothTime - (leftSmoothTime-1))) * Time.deltaTime,0,0));
             leftSmoothTime--;
-        }else if(leftSmoothTime == 0){
+        }else{
             leftSmoothTime = smoothTime;
-            leftTime = 0;
+            leftBool= false;
         }
 
-        if(Input.GetKey(KeyCode.S)){
-            transform.Translate(new Vector3(0,(-speed * Time.deltaTime),0));
-            downTime++;
-        }else if(downTime-1 > 0 && downSmoothTime-1 > 0){
-            transform.Translate(new Vector3(0,((-speed/(smoothTime - downSmoothTime)) * Time.deltaTime),0));
+        if(Input.GetKey(KeyCode.S)){    // Down
+            GetComponent<Camera>().transform.Translate(new Vector3(0,(-speed * Time.deltaTime),0));
+            downBool = true;
+        }else if(downBool && downSmoothTime-1 > 0){
+            GetComponent<Camera>().transform.Translate(new Vector3(0,((-speed/(smoothTime - (downSmoothTime-1))) * Time.deltaTime),0));
             downSmoothTime--;
-        }else if(downSmoothTime == 0){
+        }else{
             downSmoothTime = smoothTime;
-            downTime = 0;
+            downBool = false;
         }
 
-        if(Input.GetKey(KeyCode.W)){
-            transform.Translate(new Vector3(0,(speed * Time.deltaTime),0));
-            upTime++;
-        }else if(upTime-1 > 0 && upSmoothTime-1 > 0){
-            transform.Translate(new Vector3(0,((speed/(smoothTime - upSmoothTime)) * Time.deltaTime),0));
+        if(Input.GetKey(KeyCode.W)){    // Up
+            GetComponent<Camera>().transform.Translate(new Vector3(0,(speed * Time.deltaTime),0));
+            upBool = true;
+        }else if(upBool && upSmoothTime-1 > 0){
+            GetComponent<Camera>().transform.Translate(new Vector3(0,((speed/(smoothTime - (upSmoothTime-1))) * Time.deltaTime),0));
             upSmoothTime--;
-        }else if(upSmoothTime == 0){
+        }else{
             upSmoothTime = smoothTime;
-            upTime = 0;
+            upBool = false;
         }
     }
 }
