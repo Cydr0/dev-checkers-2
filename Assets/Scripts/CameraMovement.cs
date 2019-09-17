@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public float speed = 10.0f;
-    public static int smoothTime = 75;
+    public static int smoothTime = 30;
 
     public int startX;
     public int startY;
@@ -33,8 +33,9 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){    // Right
             GetComponent<Camera>().transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
             rightBool = true;
+            leftBool = false;
         }else if(rightBool && rightSmoothTime-1 > 0){
-            GetComponent<Camera>().transform.Translate(new Vector3((-speed/(smoothTime - (rightSmoothTime-1))) * Time.deltaTime,0,0));
+            GetComponent<Camera>().transform.Translate(new Vector3(-Mathf.Exp(Mathf.Log(speed)/(smoothTime - (rightSmoothTime-1))) * Time.deltaTime,0,0));
             rightSmoothTime--;
         }else{
             rightSmoothTime = smoothTime;
@@ -44,8 +45,9 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.A)){    // Left
             GetComponent<Camera>().transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
             leftBool = true;
+            rightBool = false;
         }else if(leftBool && leftSmoothTime-1 > 0){
-            GetComponent<Camera>().transform.Translate(new Vector3((speed/(smoothTime - (leftSmoothTime-1))) * Time.deltaTime,0,0));
+            GetComponent<Camera>().transform.Translate(new Vector3(Mathf.Exp(Mathf.Log(speed)/(smoothTime - (leftSmoothTime-1))) * Time.deltaTime,0,0));
             leftSmoothTime--;
         }else{
             leftSmoothTime = smoothTime;
@@ -53,10 +55,11 @@ public class CameraMovement : MonoBehaviour
         }
 
         if(Input.GetKey(KeyCode.S)){    // Down
-            GetComponent<Camera>().transform.Translate(new Vector3(0,(-speed * Time.deltaTime),0));
+            GetComponent<Camera>().transform.Translate(new Vector3(0,(speed * Time.deltaTime),0));
             downBool = true;
+            upBool = false;
         }else if(downBool && downSmoothTime-1 > 0){
-            GetComponent<Camera>().transform.Translate(new Vector3(0,((-speed/(smoothTime - (downSmoothTime-1))) * Time.deltaTime),0));
+            GetComponent<Camera>().transform.Translate(new Vector3(0,(Mathf.Exp(Mathf.Log(speed)/(smoothTime - (downSmoothTime-1))) * Time.deltaTime),0));
             downSmoothTime--;
         }else{
             downSmoothTime = smoothTime;
@@ -64,10 +67,11 @@ public class CameraMovement : MonoBehaviour
         }
 
         if(Input.GetKey(KeyCode.W)){    // Up
-            GetComponent<Camera>().transform.Translate(new Vector3(0,(speed * Time.deltaTime),0));
+            GetComponent<Camera>().transform.Translate(new Vector3(0,(-speed * Time.deltaTime),0));
             upBool = true;
+            downBool = false;
         }else if(upBool && upSmoothTime-1 > 0){
-            GetComponent<Camera>().transform.Translate(new Vector3(0,((speed/(smoothTime - (upSmoothTime-1))) * Time.deltaTime),0));
+            GetComponent<Camera>().transform.Translate(new Vector3(0,(-Mathf.Exp(Mathf.Log(speed)/(smoothTime - (upSmoothTime-1))) * Time.deltaTime),0));
             upSmoothTime--;
         }else{
             upSmoothTime = smoothTime;
