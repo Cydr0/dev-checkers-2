@@ -16,6 +16,8 @@ public class CharacterControllerGeneric : MonoBehaviour {
 
     public Vector3 offset = new Vector3(0, 0.5f, 0);
 
+    public string unitName = "AlienGrunt";
+
     Material currentMaterial;
 
     private void Awake() {
@@ -98,6 +100,7 @@ public class CharacterControllerGeneric : MonoBehaviour {
                     this.transform.position = selectedTile.transform.position + offset;
                     currentTile = selectedTile;
                     PlayerVariables.currentAP -= currentTileMoveCost;
+                    PlayerVariables.unitSelected = null;
                 }
             }
         }

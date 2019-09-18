@@ -15,7 +15,8 @@ public class HUDController : MonoBehaviour
     void Update(){
         // update text of Text element
         HUD_AP.text = "Turn AP: "+PlayerVariables.currentAP+"/"+PlayerVariables.maxAP;
-        HUD_SU.text = "Selected Unit: none";
+        if (PlayerVariables.unitSelected != null) HUD_SU.text = "Selected Unit: " + PlayerVariables.unitSelected.unitName;
+        else HUD_SU.text = "Selected Unit: None";
         HUD_SUI.text = "Selected Unit Info Here";
     }
 }
