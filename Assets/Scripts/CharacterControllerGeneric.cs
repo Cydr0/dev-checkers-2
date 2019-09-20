@@ -64,8 +64,6 @@ public class CharacterControllerGeneric : MonoBehaviour {
             selected = true;
             lastSelected = hitInfo.transform.gameObject;
             PlayerVariables.unitSelected = this;
-            Debug.Log(selected);
-            Debug.Log(lastSelected);
         }
         return selected;
     }
