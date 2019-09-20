@@ -23,10 +23,6 @@ public class CameraMovement : MonoBehaviour
     private int downSmoothTime = smoothTime;
     private int upSmoothTime = smoothTime;
 
-    public float minFov = 15f;
-    public float maxFov = 90f;
-    public float sensitivity = 5f;
-
 
     // Start is called before the first frame update
     void Start(){
@@ -36,12 +32,6 @@ public class CameraMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        float fov = Camera.main.fieldOfView;
-        fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-        fov = Mathf.Clamp(fov, minFov, maxFov);
-        Camera.main.fieldOfView = fov;
-
-
         if(decayType == "exp"){     // f(x) = e^(log(speed)/(smooth time var))
             if(Input.GetKey(KeyCode.D)){    // Right
                 GetComponent<Camera>().transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
