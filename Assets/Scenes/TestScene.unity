@@ -642,6 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  decayType: exp
   startX: 0
   startY: 10
   startZ: 0
