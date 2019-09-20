@@ -15,12 +15,18 @@ public class TerrainHandler : MonoBehaviour
 
     Vector2 startPos;
 
+    void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
 
+
         int length = 0;
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             length += getOffset(i);
         }
@@ -29,6 +35,9 @@ public class TerrainHandler : MonoBehaviour
         AddGap();
         CalcStartPos();
         CreateGrid();
+
+
+
     }
 
     void CalcStartPos()

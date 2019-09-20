@@ -6,6 +6,9 @@ public class CharacterControllerGeneric : MonoBehaviour {
 
     public bool selected = false;
     private bool grid = false;
+    bool isPlaced = false;
+    public int startingIndex = 0;
+    public int playerIndex = 0;
 
     private GameObject gameController;
     private GameObject selectedTile;
@@ -28,15 +31,20 @@ public class CharacterControllerGeneric : MonoBehaviour {
         gameController = GameObject.Find("GameController");
         terrainHandler = gameController.GetComponent<TerrainHandler>();
         currentMaterial = GetComponent<Renderer>().material;
-        currentTile = terrainHandler.cells[0].transform.gameObject;
-        this.transform.position = currentTile.transform.position + offset;
     }
 
     void Update() {
-        if (selectionCheck()) {
-            movementCheck();
+        if (!isPlaced) {
+            currentTile = terrainHandler.cells[startingIndex].transform.gameObject;
+            this.transform.position = currentTile.transform.position + offset;
+            isPlaced = true;
         }
-        materialCheck();
+        if (playerIndex == PlayerVariables.currentPlayer) {
+            if (selectionCheck()) {
+                movementCheck();
+            }
+            materialCheck();
+        }
     }
 
     void materialCheck() {
