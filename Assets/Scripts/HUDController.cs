@@ -23,7 +23,7 @@ public class HUDController : MonoBehaviour
         else HUD_SU.text = "Selected Unit: None";
         HUD_SUI.text = "Selected Unit Info Here";
 
-        CURR_TURN.text = "Current PLayer: "+(PlayerVariables.currentPlayer+1);
+        CURR_TURN.text = "Current Player: "+(PlayerVariables.currentPlayer+1);
     }
 
     void end_turn_clicked(){

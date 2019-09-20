@@ -17,7 +17,7 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void playButton()
     {
-        SceneManager.LoadScene("TerrainTest", LoadSceneMode.Additive);
+        SceneManager.LoadScene("DemoScene", LoadSceneMode.Single);
     }
 
     public void quitButton()
