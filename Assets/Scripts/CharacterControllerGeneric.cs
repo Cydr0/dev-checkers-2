@@ -60,13 +60,13 @@ public class CharacterControllerGeneric : MonoBehaviour {
             if (!hit) {
                 selected = false;
                 PlayerVariables.unitSelected = null;
-                Debug.Log(selected);
+                //Debug.Log(selected);
                 return false;
             }
             if (lastSelected != hitInfo.transform.gameObject && selected) {
                 selected = false;
                 PlayerVariables.unitSelected = null;
-                Debug.Log(selected);
+                //Debug.Log(selected);
                 return false;
             }
             selected = true;
@@ -82,7 +82,7 @@ public class CharacterControllerGeneric : MonoBehaviour {
             RaycastHit hitInfo;
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
             selectedTile = hitInfo.transform.gameObject;
-            Debug.Log("Raycast hit " + selectedTile);
+            //Debug.Log("Raycast hit " + selectedTile);
             // check if tile was hit
             if (hit && hitInfo.transform.gameObject.tag == "Tile") {
                 int cellIndex = currentTile.GetComponent<HexCell>().index;
