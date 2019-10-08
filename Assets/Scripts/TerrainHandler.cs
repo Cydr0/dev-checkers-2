@@ -4,8 +4,10 @@ public class TerrainHandler : MonoBehaviour
 {
 
     public HexCell cellPrefab;
+    public CellObject obstaclePrefab;
 
     public HexCell[] cells;
+    public CellObject[] obstacles;
 
     public int size = 5;
 
@@ -89,6 +91,7 @@ public class TerrainHandler : MonoBehaviour
 
         float scale = 0.5f;
         int i = 0;
+        int obstacleCount = 0;
         for (int y = 0; y < size; y ++){
             for (int x = 0; x < getOffset(y); x++){
 
@@ -100,8 +103,6 @@ public class TerrainHandler : MonoBehaviour
                 float height = Mathf.PerlinNoise(pX, pZ);
                 int terrainType = getTerrainType(height);
 
-
-
                 hex.transform.position = worldPos;
                 hex.transform.rotation = new Quaternion(0, Mathf.PI / 4.0f, 0, 0);
                 hex.transform.parent = this.transform;
@@ -112,10 +113,27 @@ public class TerrainHandler : MonoBehaviour
 
                 hex.setType(TerrainData.terrainTypes[terrainType]);
 
+                if(TerrainData.terrainTypes[terrainType].movementCost < 0){
+                    obstacleCount++;
+                }
+
                 cells[i] = hex;
                 i++;
             }
 
+        }
+        obstacles = new CellObject[obstacleCount];
+        int counter = 0;
+        for(int j = 0; j < cells.Length; j ++){
+            TerrainData.TerrainType cellType = cells[j].getType();
+            if(cellType.movementCost < 0){
+                obstacles[counter] = Instantiate(obstaclePrefab);
+                Vector3 pos = cells[j].transform.position;
+                pos.y = 0.6f;
+                obstacles[counter].transform.position = pos;
+                obstacles[counter].transform.parent = this.transform;
+                counter++;
+            }
         }
     }
 
