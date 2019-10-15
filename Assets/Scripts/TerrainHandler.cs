@@ -4,23 +4,27 @@ public class TerrainHandler : MonoBehaviour
 {
 
     public HexCell cellPrefab;
+    public static HexCell staticCellPrefab;
+    static HexCell[] cells;
 
-    HexCell[] cells;
+    public static int size = 9;
 
-    public int size = 5;
+    static float hexWidth = 1.73f;
+    static float hexHeight = 2f;
+    public static float gap = 0f;
 
-    float hexWidth = 1.73f;
-    float hexHeight = 2f;
-    public float gap = 0.1f;
-
-    Vector2 startPos;
+    static Vector2 startPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        staticCellPrefab = cellPrefab;
+    }
 
+    public static void generateMap(int seed)
+    {
         int length = 0;
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             length += getOffset(i);
         }
@@ -28,23 +32,23 @@ public class TerrainHandler : MonoBehaviour
 
         AddGap();
         CalcStartPos();
-        CreateGrid();
+        CreateGrid(seed);
     }
 
-    void CalcStartPos()
+    static void CalcStartPos()
     {
         float x = (size * hexWidth) / 4.0f;
         float y = (size * hexHeight) / 4.0f;
         startPos = new Vector2(-x,-y);
     }
 
-    void AddGap()
+    static void AddGap()
     {
         hexWidth += gap;
         hexHeight += gap;
     }
 
-    Vector3 CalcWorldPos(Vector2 gridPos)
+    static Vector3 CalcWorldPos(Vector2 gridPos)
     {
         float offset = getOffset((int)gridPos.y);
         offset -= offset/2.0f;
@@ -61,7 +65,7 @@ public class TerrainHandler : MonoBehaviour
         return new Vector3(x, 0, z);
     }
 
-    int getTerrainType(float height){
+    static int getTerrainType(float height){
 
         float workingHeight = height;
         for(int i = 0; i < TerrainData.terrainTypes.Length; i++){
@@ -73,17 +77,15 @@ public class TerrainHandler : MonoBehaviour
         return TerrainData.terrainTypes.Length - 1;
     }
 
-    void CreateGrid()
+    static void CreateGrid(int seed)
     {
-
-        int seed = Random.Range(0, 10000);
 
         float scale = 0.5f;
         int i = 0;
         for (int y = 0; y < size; y ++){
             for (int x = 0; x < getOffset(y); x++){
 
-                HexCell hex = Instantiate(cellPrefab);
+                HexCell hex = Instantiate(staticCellPrefab);
                 Vector2 gPos = new Vector2(x,y);
                 Vector3 worldPos = CalcWorldPos(gPos);
                 float pX = (worldPos.x / hexWidth) * scale + seed;
@@ -95,7 +97,6 @@ public class TerrainHandler : MonoBehaviour
 
                 hex.transform.position = worldPos;
                 hex.transform.rotation = new Quaternion(0, Mathf.PI / 4.0f, 0, 0);
-                hex.transform.parent = this.transform;
                 hex.name = "(" + x +","+y+") "+ TerrainData.terrainTypes[terrainType].name;
                 hex.position = gPos;
 
@@ -117,7 +118,7 @@ public class TerrainHandler : MonoBehaviour
         return cells[i].getType();
     }
 
-    int getOffset(int y){
+    public static int getOffset(int y){
         return size - Mathf.Abs(y - size / 2);
     }
 

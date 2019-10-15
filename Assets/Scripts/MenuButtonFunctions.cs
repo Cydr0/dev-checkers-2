@@ -15,13 +15,20 @@ public class MenuButtonFunctions : MonoBehaviour
         
     }
 
-    public void playButton()
-    {
-        SceneManager.LoadScene("TerrainTest", LoadSceneMode.Additive);
+    public void playButton(){
+        SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
     }
 
-    public void quitButton()
-    {
+    public void startGame(int level){
+        SceneManager.LoadScene("DemoScene", LoadSceneMode.Single);
+        LevelHandler.startGame(level);
+    }
+
+    public void levelSelect(){
+        SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
+    }
+
+    public void quitButton(){
         Application.Quit();
     }
 }

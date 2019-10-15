@@ -424,6 +424,8 @@ GameObject:
   - component: {fileID: 352631835}
   - component: {fileID: 352631836}
   - component: {fileID: 352631837}
+  - component: {fileID: 352631838}
+  - component: {fileID: 352631839}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -445,12 +447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 405148381280074504, guid: 78a68e9df0e5a1f43a5fe20cc7c46d3e,
     type: 3}
-  obstaclePrefab: {fileID: 555319205630987359, guid: a28fd629ed9a6e64e93c679febfca329,
-    type: 3}
-  cells: []
-  obstacles: []
-  size: 9
-  gap: 0
 --- !u!4 &352631834
 Transform:
   m_ObjectHideFlags: 0
@@ -509,8 +505,30 @@ MonoBehaviour:
   HUD_AP: {fileID: 836160930}
   HUD_SU: {fileID: 290034868}
   HUD_SUI: {fileID: 23715432}
-  CURR_TURN: {fileID: 1106253085}
-  END_TURN: {fileID: 98669096}
+--- !u!114 &352631838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352631832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ee29a2711b75c4990660e47f872181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &352631839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352631832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d719d4ada5787f42b02e359b789204b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &367719125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,11 +1203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ce370e8d2a7fb4ba75df7fe6def533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 0
-  startingIndex: 0
-  playerIndex: 0
-  offset: {x: 0, y: 0.5, z: 0}
-  unitName: AlienGrunt
 --- !u!1 &3383909263942359791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,11 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ce370e8d2a7fb4ba75df7fe6def533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 0
-  startingIndex: 0
-  playerIndex: 0
-  offset: {x: 0, y: 0.5, z: 0}
-  unitName: AlienGrunt
 --- !u!33 &5174118223413751215
 MeshFilter:
   m_ObjectHideFlags: 0
