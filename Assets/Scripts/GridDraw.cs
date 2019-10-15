@@ -2,23 +2,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshFilter))]
 
 public class GridDraw : MonoBehaviour{
-    public int gridSize = 5;
+    public int gridSize;
     public Material gridMaterial;
-    GameObject terrainHandler;
-
-    float hexWidth;
-    float hexHeight;
 
     private void Start() {
-        /*terrainHandler = GameObject.Find("TerrainHandler");
-        hexWidth = terrainHandler.GetComponent<TerrainHandler>().hexWidth;
-        hexHeight = terrainHandler.GetComponent<TerrainHandler>().hexHeight;*/
-    }
-
-    public void drawGrid() {
-        MeshFilter filter = gameObject.AddComponent<MeshFilter>();
+        MeshFilter filter = gameObject.GetComponent<MeshFilter>();
         var mesh = new Mesh();
         var verticies = new List<Vector3>();
         var indicies = new List<int>();
@@ -43,9 +34,5 @@ public class GridDraw : MonoBehaviour{
 
         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
         meshRenderer.material = gridMaterial;
-    }
-
-    public void destroyGrid() {
-        Destroy(this.GetComponent<MeshFilter>());
     }
 }

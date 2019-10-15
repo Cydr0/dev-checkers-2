@@ -4,10 +4,8 @@ public class TerrainHandler : MonoBehaviour
 {
 
     public HexCell cellPrefab;
-    public CellObject obstaclePrefab;
 
-    public HexCell[] cells;
-    public CellObject[] obstacles;
+    HexCell[] cells;
 
     public int size = 5;
 
@@ -17,18 +15,12 @@ public class TerrainHandler : MonoBehaviour
 
     Vector2 startPos;
 
-    void Awake()
-    {
-        
-    }
-
     // Start is called before the first frame update
     void Start()
     {
 
-
         int length = 0;
-        for (int i = 0; i < size; i++)
+        for(int i = 0; i < size; i++)
         {
             length += getOffset(i);
         }
@@ -37,9 +29,6 @@ public class TerrainHandler : MonoBehaviour
         AddGap();
         CalcStartPos();
         CreateGrid();
-
-
-
     }
 
     void CalcStartPos()
@@ -55,7 +44,7 @@ public class TerrainHandler : MonoBehaviour
         hexHeight += gap;
     }
 
-    public Vector3 CalcWorldPos(Vector2 gridPos)
+    Vector3 CalcWorldPos(Vector2 gridPos)
     {
         float offset = getOffset((int)gridPos.y);
         offset -= offset/2.0f;
@@ -91,7 +80,6 @@ public class TerrainHandler : MonoBehaviour
 
         float scale = 0.5f;
         int i = 0;
-        int obstacleCount = 0;
         for (int y = 0; y < size; y ++){
             for (int x = 0; x < getOffset(y); x++){
 
@@ -103,41 +91,24 @@ public class TerrainHandler : MonoBehaviour
                 float height = Mathf.PerlinNoise(pX, pZ);
                 int terrainType = getTerrainType(height);
 
+
+
                 hex.transform.position = worldPos;
                 hex.transform.rotation = new Quaternion(0, Mathf.PI / 4.0f, 0, 0);
                 hex.transform.parent = this.transform;
                 hex.name = "(" + x +","+y+") "+ TerrainData.terrainTypes[terrainType].name;
                 hex.position = gPos;
 
-                hex.index = i;
-
                 hex.setType(TerrainData.terrainTypes[terrainType]);
-
-                if(TerrainData.terrainTypes[terrainType].movementCost < 0){
-                    obstacleCount++;
-                }
 
                 cells[i] = hex;
                 i++;
             }
 
         }
-        obstacles = new CellObject[obstacleCount];
-        int counter = 0;
-        for(int j = 0; j < cells.Length; j ++){
-            TerrainData.TerrainType cellType = cells[j].getType();
-            if(cellType.movementCost < 0){
-                obstacles[counter] = Instantiate(obstaclePrefab);
-                Vector3 pos = cells[j].transform.position;
-                pos.y = 0.6f;
-                obstacles[counter].transform.position = pos;
-                obstacles[counter].transform.parent = this.transform;
-                counter++;
-            }
-        }
     }
 
-    public TerrainData.TerrainType getTileType(int i){
+    TerrainData.TerrainType getTileType(int i){
         if (i < 0 || i >= cells.Length) {
             TerrainData.TerrainType nType = new TerrainData.TerrainType();
             nType.name = "null";
@@ -159,7 +130,7 @@ public class TerrainHandler : MonoBehaviour
         return result;
     }
 
-    public int[] getNeighbours(int i)
+    int[] getNeighbours(int i)
     {
         if(i < 0 || i >= cells.Length) {return null;}
 
@@ -197,7 +168,7 @@ public class TerrainHandler : MonoBehaviour
         return neighbours;
     }
 
-    public int getCellIndex(int x, int y){
+    int getCellIndex(int x, int y){
         for(int i = 0; i < cells.Length; i++)
         {
             if((int) cells[i].position.x == x && (int) cells[i].position.y == y)
@@ -209,7 +180,8 @@ public class TerrainHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-        
-    }   
+    void Update()
+    {
+
+    }
 }

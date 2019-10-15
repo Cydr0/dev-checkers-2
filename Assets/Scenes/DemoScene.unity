@@ -445,7 +445,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 405148381280074504, guid: 78a68e9df0e5a1f43a5fe20cc7c46d3e,
     type: 3}
+  obstaclePrefab: {fileID: 555319205630987359, guid: a28fd629ed9a6e64e93c679febfca329,
+    type: 3}
   cells: []
+  obstacles: []
   size: 9
   gap: 0
 --- !u!4 &352631834
@@ -671,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  decayType: exp
   startX: 0
   startY: 6
   startZ: 0
@@ -1182,10 +1186,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  startingIndex: 4
-  playerIndex: 1
-  offset: {x: 0, y: 1, z: 0}
-  unitName: RobotGrunt
+  startingIndex: 0
+  playerIndex: 0
+  offset: {x: 0, y: 0.5, z: 0}
+  unitName: AlienGrunt
 --- !u!1 &3383909263942359791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1224,7 @@ MonoBehaviour:
   selected: 0
   startingIndex: 0
   playerIndex: 0
-  offset: {x: 0, y: 1, z: 0}
+  offset: {x: 0, y: 0.5, z: 0}
   unitName: AlienGrunt
 --- !u!33 &5174118223413751215
 MeshFilter:

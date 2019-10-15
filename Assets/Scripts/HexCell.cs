@@ -6,7 +6,6 @@ public class HexCell : MonoBehaviour
 {
     public Vector2 position;
     public Material material;
-    public int index;
 
     int movementCost = 1;
 
