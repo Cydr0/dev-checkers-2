@@ -14,7 +14,7 @@ public class MenuButtonFunctions : MonoBehaviour
     void Update(){
         
     }
-
+    /*
     public void playButton(){
         SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);
     }
@@ -31,4 +31,5 @@ public class MenuButtonFunctions : MonoBehaviour
     public void quitButton(){
         Application.Quit();
     }
+    */
 }

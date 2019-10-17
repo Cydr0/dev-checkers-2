@@ -692,7 +692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  decayType: exp
   startX: 0
   startY: 6
   startZ: 0
@@ -1184,13 +1183,14 @@ GameObject:
   - component: {fileID: 5174118223413751215}
   - component: {fileID: 5395206778106009617}
   - component: {fileID: 1588614869558850733}
+  - component: {fileID: 1588614869558850734}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1588614869558850733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,9 +1200,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588614869558850732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ce370e8d2a7fb4ba75df7fe6def533, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b85c24914e07e64ba7cb411afd410f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected: 0
+  startingIndex: 0
+  playerIndex: 0
+  offset: {x: 0, y: 0.5, z: 0}
+  unitName: AlienGrunt
+--- !u!64 &1588614869558850734
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588614869558850732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5495902117074765545, guid: d9df98e2962f6e245bee100817d59dd6, type: 3}
 --- !u!1 &3383909263942359791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1234,7 @@ GameObject:
   - component: {fileID: 7838791064382798092}
   - component: {fileID: 5870968103576715841}
   - component: {fileID: 3383909263942359792}
+  - component: {fileID: 3383909263942359793}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -1231,9 +1251,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 3383909263942359791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ce370e8d2a7fb4ba75df7fe6def533, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b85c24914e07e64ba7cb411afd410f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected: 0
+  startingIndex: 0
+  playerIndex: 0
+  offset: {x: 0, y: 0.5, z: 0}
+  unitName: AlienGrunt
+--- !u!64 &3383909263942359793
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3383909263942359791}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 3434600355278962795, guid: c2aa5705aec5d7d4cb54a81e278cc163, type: 3}
 --- !u!33 &5174118223413751215
 MeshFilter:
   m_ObjectHideFlags: 0

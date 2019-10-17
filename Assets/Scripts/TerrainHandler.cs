@@ -5,7 +5,7 @@ public class TerrainHandler : MonoBehaviour
 
     public HexCell cellPrefab;
     public static HexCell staticCellPrefab;
-    static HexCell[] cells;
+    public static HexCell[] cells;
 
     public static int size = 9;
 
@@ -100,6 +100,8 @@ public class TerrainHandler : MonoBehaviour
                 hex.name = "(" + x +","+y+") "+ TerrainData.terrainTypes[terrainType].name;
                 hex.position = gPos;
 
+                hex.index = i;
+
                 hex.setType(TerrainData.terrainTypes[terrainType]);
 
                 cells[i] = hex;
@@ -109,7 +111,7 @@ public class TerrainHandler : MonoBehaviour
         }
     }
 
-    TerrainData.TerrainType getTileType(int i){
+    public TerrainData.TerrainType getTileType(int i){
         if (i < 0 || i >= cells.Length) {
             TerrainData.TerrainType nType = new TerrainData.TerrainType();
             nType.name = "null";
@@ -122,7 +124,7 @@ public class TerrainHandler : MonoBehaviour
         return size - Mathf.Abs(y - size / 2);
     }
 
-    TerrainData.TerrainType[] getNeighbourTypes(int index){
+    public TerrainData.TerrainType[] getNeighbourTypes(int index){
         int[] neighbours = getNeighbours(index);
         TerrainData.TerrainType[] result = new TerrainData.TerrainType[neighbours.Length];
         for (int i = 0; i < neighbours.Length; i++){
@@ -131,7 +133,7 @@ public class TerrainHandler : MonoBehaviour
         return result;
     }
 
-    int[] getNeighbours(int i)
+    public int[] getNeighbours(int i)
     {
         if(i < 0 || i >= cells.Length) {return null;}
 
@@ -178,6 +180,10 @@ public class TerrainHandler : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public bool hasObject(int index) {
+        return true;
     }
 
     // Update is called once per frame
