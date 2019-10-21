@@ -5,7 +5,12 @@ public class TerrainHandler : MonoBehaviour
 
     public HexCell cellPrefab;
     public static HexCell staticCellPrefab;
-    static HexCell[] cells;
+
+    public CellObject obstaclePrefab;
+    public static CellObject staticObstaclePrefab;
+
+    static public HexCell[] cells;
+    public static CellObject[] obstacles;
 
     public static int size = 9;
 
@@ -19,6 +24,7 @@ public class TerrainHandler : MonoBehaviour
     void Start()
     {
         staticCellPrefab = cellPrefab;
+        staticObstaclePrefab = obstaclePrefab;
     }
 
     public static void generateMap(int seed)
@@ -82,34 +88,59 @@ public class TerrainHandler : MonoBehaviour
 
         float scale = 0.5f;
         int i = 0;
-        for (int y = 0; y < size; y ++){
-            for (int x = 0; x < getOffset(y); x++){
+        int obstacleCount = 0;
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < getOffset(y); x++)
+            {
 
                 HexCell hex = Instantiate(staticCellPrefab);
-                Vector2 gPos = new Vector2(x,y);
+                Vector2 gPos = new Vector2(x, y);
                 Vector3 worldPos = CalcWorldPos(gPos);
                 float pX = (worldPos.x / hexWidth) * scale + seed;
                 float pZ = (worldPos.z / hexHeight) * scale + seed;
                 float height = Mathf.PerlinNoise(pX, pZ);
                 int terrainType = getTerrainType(height);
 
-
-
                 hex.transform.position = worldPos;
                 hex.transform.rotation = new Quaternion(0, Mathf.PI / 4.0f, 0, 0);
-                hex.name = "(" + x +","+y+") "+ TerrainData.terrainTypes[terrainType].name;
+                hex.name = "(" + x + "," + y + ") " + TerrainData.terrainTypes[terrainType].name;
                 hex.position = gPos;
 
+               hex.index = i;
+
                 hex.setType(TerrainData.terrainTypes[terrainType]);
+
+                if (TerrainData.terrainTypes[terrainType].movementCost < 0)
+                {
+                    obstacleCount++;
+                }
 
                 cells[i] = hex;
                 i++;
             }
 
         }
+        obstacles = new CellObject[obstacleCount];
+        int counter = 0;
+        for (int j = 0; j < cells.Length; j++)
+        {
+            TerrainData.TerrainType cellType = cells[j].getType();
+            if (cellType.movementCost < 0)
+            {
+                obstacles[counter] = Instantiate(staticObstaclePrefab);
+                Vector3 pos = cells[j].transform.position;
+                pos.y = 0.6f;
+                obstacles[counter].transform.position = pos;
+
+                //Randomise Rotation
+
+                counter++;
+            }
+        }
     }
 
-    TerrainData.TerrainType getTileType(int i){
+    public TerrainData.TerrainType getTileType(int i){
         if (i < 0 || i >= cells.Length) {
             TerrainData.TerrainType nType = new TerrainData.TerrainType();
             nType.name = "null";
@@ -131,7 +162,7 @@ public class TerrainHandler : MonoBehaviour
         return result;
     }
 
-    int[] getNeighbours(int i)
+    public int[] getNeighbours(int i)
     {
         if(i < 0 || i >= cells.Length) {return null;}
 
@@ -186,3 +217,5 @@ public class TerrainHandler : MonoBehaviour
 
     }
 }
+
+

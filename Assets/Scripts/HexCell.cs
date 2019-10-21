@@ -9,6 +9,8 @@ public class HexCell : MonoBehaviour
 
     int movementCost = 1;
 
+    public int index = 0;
+
     Renderer rend;
 
     TerrainData.TerrainType type;
