@@ -3,6 +3,8 @@
 public class TerrainHandler : MonoBehaviour
 {
 
+    public static Random random = new Random();
+
     public HexCell cellPrefab;
     public static HexCell staticCellPrefab;
 
@@ -133,7 +135,8 @@ public class TerrainHandler : MonoBehaviour
                 pos.y = 0.6f;
                 obstacles[counter].transform.position = pos;
 
-                //Randomise Rotation
+                float randomNum = (Random.value*360);
+                obstacles[counter].transform.rotation = Quaternion.Euler(-90f, randomNum, 0f);
 
                 counter++;
             }
