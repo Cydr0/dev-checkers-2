@@ -23,7 +23,7 @@ public class LevelData : MonoBehaviour
     {
         LevelDefinitions = new LevelDefinition[5];
 
-        LevelDefinitions[0] = new LevelDefinition(12345, 0, 11);
+        LevelDefinitions[0] = new LevelDefinition(12345, 1, 59);
         LevelDefinitions[1] = new LevelDefinition(12346, 0, 11);
         LevelDefinitions[2] = new LevelDefinition(12347, 0, 11);
         LevelDefinitions[3] = new LevelDefinition(12348, 0, 11);
