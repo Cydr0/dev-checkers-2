@@ -22,8 +22,6 @@ public class TerrainData : MonoBehaviour
     public Material t1;
     public Material t2;
     public Material t3;
-    public Material t4;
-    public Material t5;
 
     public static TerrainType[] terrainTypes;
 
@@ -34,13 +32,11 @@ public class TerrainData : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        terrainTypes = new TerrainType[5];
+        terrainTypes = new TerrainType[3];
 
-        terrainTypes[0] = new TerrainType(t1, 1, "ground0", 1);
+        terrainTypes[0] = new TerrainType(t1, 1, "ground0", 2);
         terrainTypes[1] = new TerrainType(t2, 2, "ground1", 1);
-        terrainTypes[2] = new TerrainType(t3, 3, "ground2", 1);
-        terrainTypes[3] = new TerrainType(t4, 4, "ground3", 1);
-        terrainTypes[4] = new TerrainType(t5, -1, "obstacle", 1);
+        terrainTypes[2] = new TerrainType(t3, -1, "obstacle", 1);
 
         float total = 0;
         for (int i = 0; i < terrainTypes.Length; i++)

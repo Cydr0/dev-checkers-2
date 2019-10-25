@@ -33,6 +33,9 @@ public class HexCell : MonoBehaviour
         material = type.material;
         rend = GetComponent<Renderer>();
         rend.enabled = true;
+        if (_type.movementCost < 0) {
+            rend.enabled = false;
+        }
 
         Material[] mats = rend.materials;
         mats[0] = material;

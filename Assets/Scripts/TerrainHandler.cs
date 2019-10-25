@@ -8,8 +8,8 @@ public class TerrainHandler : MonoBehaviour
     public HexCell cellPrefab;
     public static HexCell staticCellPrefab;
 
-    public CellObject obstaclePrefab;
-    public static CellObject staticObstaclePrefab;
+    //public CellObject obstaclePrefab;
+    //public static CellObject staticObstaclePrefab;
 
     static public HexCell[] cells;
     public static CellObject[] obstacles;
@@ -26,7 +26,7 @@ public class TerrainHandler : MonoBehaviour
     void Start()
     {
         staticCellPrefab = cellPrefab;
-        staticObstaclePrefab = obstaclePrefab;
+        //staticObstaclePrefab = obstaclePrefab;
     }
 
     public static void generateMap(int seed)
@@ -90,7 +90,7 @@ public class TerrainHandler : MonoBehaviour
 
         float scale = 0.5f;
         int i = 0;
-        int obstacleCount = 0;
+        //int obstacleCount = 0;
         for (int y = 0; y < size; y++)
         {
             for (int x = 0; x < getOffset(y); x++)
@@ -113,16 +113,17 @@ public class TerrainHandler : MonoBehaviour
 
                 hex.setType(TerrainData.terrainTypes[terrainType]);
 
-                if (TerrainData.terrainTypes[terrainType].movementCost < 0)
-                {
-                    obstacleCount++;
-                }
+                //if (TerrainData.terrainTypes[terrainType].movementCost < 0)
+                //{
+                    //obstacleCount++;
+                //}
 
                 cells[i] = hex;
                 i++;
             }
 
         }
+        /*
         obstacles = new CellObject[obstacleCount];
         int counter = 0;
         for (int j = 0; j < cells.Length; j++)
@@ -141,6 +142,7 @@ public class TerrainHandler : MonoBehaviour
                 counter++;
             }
         }
+        */
     }
 
     public TerrainData.TerrainType getTileType(int i){
