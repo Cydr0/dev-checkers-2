@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CameraMovement : MonoBehaviour
 {
     public float speed = 10.0f;
+    public float rotSpeed = 10.0f;
     public static int smoothTime = 20;
 
     public string decayType = "exp";    // Can be exp, or log
@@ -17,11 +19,15 @@ public class CameraMovement : MonoBehaviour
     private bool leftBool = false;
     private bool downBool = false;
     private bool upBool = false;
+    private bool leftRot = false;
+    private bool rightRot = false;
 
     private int rightSmoothTime = smoothTime;
     private int leftSmoothTime = smoothTime;
     private int downSmoothTime = smoothTime;
     private int upSmoothTime = smoothTime;
+    private int leftRotTime = smoothTime;
+    private int rightRotTime = smoothTime;
 
 
     // Start is called before the first frame update
@@ -79,6 +85,31 @@ public class CameraMovement : MonoBehaviour
             }else{
                 upSmoothTime = smoothTime;
                 upBool = false;
+            }
+
+
+            if(Input.GetKey(KeyCode.LeftArrow)){    // Left rotation
+                GetComponent<Camera>().transform.Rotate(new Vector3(0, -rotSpeed * Time.deltaTime, 0));
+                leftRot = true;
+                rightRot = false;
+            }else if(leftRot && leftRotTime-1 > 0){
+                GetComponent<Camera>().transform.Rotate(new Vector3(0, (-Mathf.Exp(Mathf.Log(rotSpeed)/(smoothTime - (leftRotTime-1))) * Time.deltaTime), 0));
+                leftRotTime--;
+            }else{
+                leftRotTime = smoothTime;
+                leftRot = false;
+            }
+
+            if(Input.GetKey(KeyCode.RightArrow)){    // Right rotation
+                GetComponent<Camera>().transform.Rotate(new Vector3(0, rotSpeed * Time.deltaTime, 0));
+                rightRot = true;
+                leftRot = false;
+            }else if(rightRot && rightRotTime-1 > 0){
+                GetComponent<Camera>().transform.Rotate(new Vector3(0, (Mathf.Exp(Mathf.Log(rotSpeed)/(smoothTime - (rightRotTime-1))) * Time.deltaTime), 0));
+                rightSmoothTime--;
+            }else{
+                rightRotTime = smoothTime;
+                rightRot = false;
             }
         }/*else if(decayType == "log"){   // f(x) = speed - (-3.57092*10^(-6)(smoothTime)^(3)+0.000845061(smoothTime)^(2)-0.0715902(smoothTime)+4.44856)log(x)
             if(Input.GetKey(KeyCode.D)){    // Right

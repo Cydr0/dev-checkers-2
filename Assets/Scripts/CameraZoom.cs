@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    public float minFov = 20f;
-    public float maxFov = 90f;
-    public float sensitivity = 10f;
+    public float zoom = 20f;
+    public float zoomSpeed = 5f;
+    Transform cam; 
 
     void Start(){
-        
+        cam = this.transform;
     }
 
     void Update(){
-        float fov = Camera.main.fieldOfView;
-        fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-        fov = Mathf.Clamp(fov, minFov, maxFov);
-        Camera.main.fieldOfView = fov;
+        zoom += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        transform.position = new Vector3(cam.position.x, zoom, cam.position.z);
     }
 }
