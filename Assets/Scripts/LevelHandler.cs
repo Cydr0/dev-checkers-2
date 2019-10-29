@@ -28,6 +28,15 @@ public class LevelHandler : MonoBehaviour
         PlayerVariables.flagTile1 = flag1;
         PlayerVariables.flagTile2 = flag2;
 
+        int goal1 = LevelData.LevelDefinitions[level].goalTile1;
+        int goal2 = LevelData.LevelDefinitions[level].goalTile2;
+
+        PlayerVariables.flagTile1 = flag1;
+        PlayerVariables.flagTile2 = flag2;
+
+
+        //InitialiseGoals
+
 
         flagP1 = Instantiate(staticFlagPrefab);
         Vector3 pos = TerrainHandler.cells[flag1].transform.position;

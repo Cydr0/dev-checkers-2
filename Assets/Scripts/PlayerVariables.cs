@@ -15,6 +15,9 @@ public class PlayerVariables : MonoBehaviour
     public static int flagTile1 = 0;
     public static int flagTile2 = 0;
 
+    public static int goalTile1 = 0;
+    public static int goalTile2 = 0;
+
     static bool hasFlag1 = false;
     static bool hasFlag2 = false;
 
