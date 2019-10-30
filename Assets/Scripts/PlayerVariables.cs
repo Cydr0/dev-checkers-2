@@ -9,6 +9,9 @@ public class PlayerVariables : MonoBehaviour
     public static int currentAP;
     public static CharacterControllerGeneric unitSelected = new CharacterControllerGeneric();
 
+    public static CharacterControllerRobot[] playerOneCharacters;
+    public static CharacterControllerAlien[] playerTwoCharacters;
+
     public static int currentPlayer = 0;
     static int numberOfPlayers = 2;
 
@@ -21,8 +24,8 @@ public class PlayerVariables : MonoBehaviour
     static bool hasFlag1 = false;
     static bool hasFlag2 = false;
 
-    static bool showFlag1 = true;
-    static bool showFlag2 = true;
+    public static bool showFlag1 = true;
+    public static bool showFlag2 = true;
 
     // Start is called before the first frame update
     void Start()
@@ -81,4 +84,34 @@ public class PlayerVariables : MonoBehaviour
         pos.y += 0.3f;
         LevelHandler.flagP1.transform.position = pos;
     }
+
+    public static void setPlayerOneCharacters(int[] units){
+        playerOneCharacters = new CharacterControllerRobot[units.Length];
+        for(int i = 0; i < units.Length; i++){
+            playerOneCharacters[i].createCharacter(units[i]);
+        }
+    }
+
+    public static void setPlayerTwoCharacters(int[] units){
+        playerTwoCharacters = new CharacterControllerAlien[units.Length];
+        for (int i = 0; i < units.Length; i++){
+            playerTwoCharacters[i].createCharacter(units[i]);
+        }
+    }
+
+    static int playerOneCounter = 0;
+    static int playerTwoCounter = 0;
+
+    public static int getNextCharacterIndex(int player){
+        int index;
+        if (player == 1){
+            index = playerOneCounter++;
+            return index;
+        }
+        else{
+            index = playerTwoCounter++;
+            return index;
+        }
+    }
+
 }
