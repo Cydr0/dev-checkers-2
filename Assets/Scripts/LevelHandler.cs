@@ -34,8 +34,8 @@ public class LevelHandler : MonoBehaviour
         PlayerVariables.flagTile1 = flag1;
         PlayerVariables.flagTile2 = flag2;
 
-        PlayerVariables.setPlayerOneCharacters(LevelData.LevelDefinition[level].playerOneUnits);
-        PlayerVariables.setPlayerTwoCharacters(LevelData.LevelDefinition[level].playerTwoUnits);
+        PlayerVariables.setPlayerOneCharacters(LevelData.LevelDefinitions[level].units1);
+        PlayerVariables.setPlayerTwoCharacters(LevelData.LevelDefinitions[level].units2);
 
         //InitialiseGoals
 
