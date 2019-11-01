@@ -56,22 +56,6 @@ public class LevelHandler : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if (PlayerVariables.showFlag1){
-            Renderer rend = flagP1.GetComponent<Renderer>();
-            rend.enabled = true;
-        }
-        else{
-            Renderer rend = flagP1.GetComponent<Renderer>();
-            rend.enabled = false;
-        }
 
-        if (PlayerVariables.showFlag2){
-            Renderer rend = flagP2.GetComponent<Renderer>();
-            rend.enabled = true;
-        }
-        else{
-            Renderer rend = flagP2.GetComponent<Renderer>();
-            rend.enabled = false;
-        }
     }
 }
